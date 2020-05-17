@@ -1,0 +1,17 @@
+{
+  "name": "covid-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Hadi Husain",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^16.5.1",
+    "express": "^4.17.1",
+    "puppeteer": "^3.0.4"
+  }
+}
