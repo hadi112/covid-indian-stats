@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
 
-app.get("/stats",async(req,res) => {
+app.get("/",async(req,res) => {
     try{
     let infourl = 'https://www.mygov.in/covid-19';
     let browser = await puppeteer.launch({args:['--no-sandbox','--disable-setuid-sandbox']});
