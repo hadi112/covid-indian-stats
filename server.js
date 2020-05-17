@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 3000;
 const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
@@ -21,4 +22,4 @@ app.get("/stats",async(req,res) => {
     }
 })
 
-app.listen(3000);
+app.listen(PORT);
