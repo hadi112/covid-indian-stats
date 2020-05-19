@@ -1,3 +1,4 @@
+
 const PORT = process.env.PORT || 3000;
 const puppeteer = require('puppeteer');
 const express = require('express');
@@ -13,13 +14,12 @@ app.get("/",async(req,res) => {
         let stats = document.querySelector('div[class="information_row"]').innerText;
         return stats;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     });
-    console.log(data);
+    //console.log(data);
     res.send(data);
     //alert(data);
     await browser.close();}
     catch(error){
         console.log(error);
     }
-})
-
+});
 app.listen(PORT);
