@@ -2,9 +2,6 @@ const PORT = process.env.PORT || 3000;
 const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
-//const cors = require('cors');
-
-//app.use(cors());
 
 app.get("/",async(req,res) => {
     try{
@@ -13,12 +10,23 @@ app.get("/",async(req,res) => {
     let page = await browser.newPage();
     await page.goto(infourl, { waitUntil:'networkidle2' , timeout: 0 });
     let data = await page.evaluate( () =>{
-        let stats = document.querySelector('div[class="information_row"]').innerText;
-        return stats;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        let stats = document.getElementById("#dashboard").childNodes;
+        let active = stats[3].innerText;
+        let cured = stats[5].innerText;
+        let death = stats[7].innerText;
+        let migrated = stats[9].innerText;
+        return {
+            active,
+            cured,
+            death,
+            migrated
+        };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     });
-    //console.log(data);
-    res.send(data);
-    //alert(data);
+    var json = JSON.stringify(data);
+    json = json.replace(/\\n/g, ' ');
+    json =  JSON.parse(json);
+    console.log(json);
+    res.send(json)
     await browser.close();}
     catch(error){
         console.log(error);
