@@ -10,9 +10,7 @@
   "author": "Hadi Husain",
   "license": "ISC",
   "dependencies": {
-    "browserify": "^16.5.1",
     "express": "^4.17.1",
-    "puppeteer": "^3.0.4",
-    "request": "^2.88.2"
+    "puppeteer": "^3.0.4"
   }
 }
