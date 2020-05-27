@@ -6,8 +6,20 @@ const app = express();
 app.get("/",async(req,res) => {
     try{
     let infourl = 'https://www.mygov.in/covid-19';
-    let browser = await puppeteer.launch({args:['--no-sandbox','--disable-setuid-sandbox']});
+    let browser = await puppeteer.launch({headless: false,args:['--no-sandbox','--disable-setuid-sandbox']});
     let page = await browser.newPage();
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+        request._interceptionHandled = false;
+        if (['image', 'stylesheet', 'font'].includes(request.resourceType())) {
+          request.respond({
+            status: 200,
+            body: "foo"
+          })
+        } else {
+          request.continue();
+        }
+      });
     await page.goto(infourl, { waitUntil:'networkidle2' , timeout: 0 });
     let data = await page.evaluate( () =>{
         let stats = document.getElementById("#dashboard").childNodes;
