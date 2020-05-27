@@ -6,7 +6,7 @@ const app = express();
 app.get("/",async(req,res) => {
     try{
     let infourl = 'https://www.mygov.in/covid-19';
-    let browser = await puppeteer.launch({headless: false,args:['--no-sandbox','--disable-setuid-sandbox']});
+    let browser = await puppeteer.launch({headless: true,args:['--no-sandbox','--disable-setuid-sandbox']});
     let page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {
