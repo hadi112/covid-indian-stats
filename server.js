@@ -37,7 +37,7 @@ app.get("/",async(req,res) => {
     var json = JSON.stringify(data);
     json = json.replace(/\\n/g, ' ');
     json =  JSON.parse(json);
-    console.log(json);
+    //console.log(json);
     res.send(json)
     await browser.close();}
     catch(error){
